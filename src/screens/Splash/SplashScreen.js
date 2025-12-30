@@ -12,6 +12,7 @@ import Toast from 'react-native-simple-toast';
 import * as IMAGE from '../../styles/image';
 import { SafeAreaView } from 'react-native-safe-area-context';
 const HEIGHT = Dimensions.get('window').height;
+import * as COLOR from "../../styles/colors";
 
 function SplashScreen(props) {
 
@@ -35,7 +36,7 @@ function SplashScreen(props) {
     }
 
     return (
-        <SafeAreaView style={{ flex: 1, backgroundColor: "#FFFFFF" }} >
+        <SafeAreaView style={{ flex: 1, backgroundColor: COLOR.WHITE }} >
             <StatusBar hidden={false} translucent={true} backgroundColor={"transparent"} barStyle={"dark-content"} />
             <Image source={IMAGE.SHIKSHALOGO} style={{ width: 245, height: 80, alignSelf: 'center', marginTop: HEIGHT / 3 + 50 }} />
             {/* <ImageBackground source={IMAGE.DEFAULTSPLASH} style={{

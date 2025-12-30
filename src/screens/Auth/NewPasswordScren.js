@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { useNavigation } from '@react-navigation/native';
+import * as COLOR from '../../styles/colors';
 
 const NewPasswordScren = () => {
     const [password, setPassword] = useState('');
@@ -13,18 +14,16 @@ const NewPasswordScren = () => {
     return (
         <View style={styles.container}>
             <View style={styles.iconCircle}>
-                <Ionicons name="lock-closed-outline" size={36} color="#1976d2" />
+                <Ionicons name="lock-closed-outline" size={36} color={COLOR.DEFALUTCOLOR} />
             </View>
-            <Text style={styles.title}>Set New Password</Text>
-            <Text style={styles.subtitle}>
-                Enter your new password below. Make sure it's strong and easy to remember.
-            </Text>
+            <Text style={styles.title}>{"Set New Password"}</Text>
+            <Text style={styles.subtitle}>{"Enter your new password below. Make sure it's strong and easy to remember."}</Text>
             <View style={styles.inputWrapper}>
-                <Ionicons name="lock-closed-outline" size={20} color="#888" style={styles.inputIcon} />
+                <Ionicons name="lock-closed-outline" size={20} color={COLOR.GRAY_DARK} style={styles.inputIcon} />
                 <TextInput
                     style={styles.input}
-                    placeholder="New password"
-                    placeholderTextColor="#888"
+                    placeholder={"New password"}
+                    placeholderTextColor={COLOR.GRAY_DARK}
                     value={password}
                     onChangeText={setPassword}
                     secureTextEntry={!showPassword}
@@ -33,17 +32,17 @@ const NewPasswordScren = () => {
                     <Ionicons
                         name={showPassword ? 'eye-off-outline' : 'eye-outline'}
                         size={20}
-                        color="#888"
+                        color={COLOR.GRAY_DARK}
                         style={styles.inputIconRight}
                     />
                 </TouchableOpacity>
             </View>
             <View style={styles.inputWrapper}>
-                <Ionicons name="lock-closed-outline" size={20} color="#888" style={styles.inputIcon} />
+                <Ionicons name="lock-closed-outline" size={20} color={COLOR.GRAY_DARK} style={styles.inputIcon} />
                 <TextInput
                     style={styles.input}
-                    placeholder="Confirm password"
-                    placeholderTextColor="#888"
+                    placeholder={"Confirm password"}
+                    placeholderTextColor={COLOR.GRAY_DARK}
                     value={confirm}
                     onChangeText={setConfirm}
                     secureTextEntry={!showConfirm}
@@ -52,7 +51,7 @@ const NewPasswordScren = () => {
                     <Ionicons
                         name={showConfirm ? 'eye-off-outline' : 'eye-outline'}
                         size={20}
-                        color="#888"
+                        color={COLOR.GRAY_DARK}
                         style={styles.inputIconRight}
                     />
                 </TouchableOpacity>
@@ -61,7 +60,7 @@ const NewPasswordScren = () => {
                 style={styles.saveBtn}
                 onPress={() => navigation.navigate('LoginScreen')}
             >
-                <Text style={styles.saveBtnText}>Forgot Password</Text>
+                <Text style={styles.saveBtnText}>{"Save Password"}</Text>
             </TouchableOpacity>
         </View>
     );
@@ -70,7 +69,7 @@ const NewPasswordScren = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#f6f8fa',
+        backgroundColor: COLOR.LIGHTDEFALUTCOLOR,
         alignItems: 'center',
         justifyContent: 'center',
         paddingHorizontal: 24,
@@ -79,7 +78,7 @@ const styles = StyleSheet.create({
         width: 64,
         height: 64,
         borderRadius: 32,
-        backgroundColor: '#eaf2fd',
+        backgroundColor: COLOR.LIGHTLOGODEFALUTCOLOR,
         alignItems: 'center',
         justifyContent: 'center',
         marginBottom: 18,
@@ -87,12 +86,12 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 24,
         fontWeight: 'bold',
-        color: '#222',
+        color: COLOR.BLACK,
         marginBottom: 6,
         textAlign: 'center',
     },
     subtitle: {
-        color: '#888',
+        color: COLOR.GRAY_DARK,
         fontSize: 15,
         marginBottom: 28,
         textAlign: 'center',
@@ -100,10 +99,10 @@ const styles = StyleSheet.create({
     inputWrapper: {
         flexDirection: 'row',
         alignItems: 'center',
-        backgroundColor: '#fff',
+        backgroundColor: COLOR.WHITE,
         borderRadius: 12,
         borderWidth: 1,
-        borderColor: '#e0e0e0',
+        borderColor: COLOR.LIGHT_GREY,
         marginBottom: 16,
         paddingHorizontal: 12,
         paddingVertical: 2,
@@ -118,11 +117,11 @@ const styles = StyleSheet.create({
     input: {
         flex: 1,
         fontSize: 16,
-        color: '#222',
+        color: COLOR.BLACK,
         paddingVertical: 12,
     },
     saveBtn: {
-        backgroundColor: '#1976d2',
+        backgroundColor: COLOR.DEFALUTCOLOR,
         borderRadius: 12,
         paddingVertical: 14,
         alignItems: 'center',
@@ -131,7 +130,7 @@ const styles = StyleSheet.create({
         marginTop: 8,
     },
     saveBtnText: {
-        color: '#fff',
+        color: COLOR.WHITE,
         fontWeight: 'bold',
         fontSize: 16,
     },

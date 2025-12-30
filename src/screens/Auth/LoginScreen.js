@@ -11,6 +11,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import { useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { AUTHUSERINFO } from '../../context/actions/type';
+import * as COLOR from '../../styles/colors';
 
 const LoginScreen = () => {
     const [email, setEmail] = useState('');
@@ -31,100 +32,75 @@ const LoginScreen = () => {
 
     return (
         <View style={styles.container}>
-            {/* Logo */}
             <View style={styles.logoWrapper}>
                 <View style={styles.logoCircle}>
-                    <Ionicons name="school-outline" size={36} color="#1976d2" />
+                    <Ionicons name="school-outline" size={36} color={COLOR.DEFALUTCOLOR} />
                 </View>
             </View>
-            {/* Welcome Text */}
-            <Text style={styles.title}>Welcome Back</Text>
-            <Text style={styles.subtitle}>Sign in to continue learning</Text>
-
-            {/* Email Input */}
+            <Text style={styles.title}>{"Welcome Back"}</Text>
+            <Text style={styles.subtitle}>{"Sign in to continue learning"}</Text>
             <View style={styles.inputWrapper}>
-                <Ionicons name="mail-outline" size={20} color="#888" style={styles.inputIcon} />
+                <Ionicons name="mail-outline" size={20} color={COLOR.GRAY_DARK} style={styles.inputIcon} />
                 <TextInput
                     style={styles.input}
-                    placeholder="Enter your email"
-                    placeholderTextColor="#888"
+                    placeholder={"Enter your email"}
+                    placeholderTextColor={COLOR.GRAY_DARK}
                     value={email}
                     onChangeText={setEmail}
                     keyboardType="email-address"
                     autoCapitalize="none"
                 />
             </View>
-
-            {/* Password Input */}
             <View style={styles.inputWrapper}>
-                <Ionicons name="lock-closed-outline" size={20} color="#888" style={styles.inputIcon} />
+                <Ionicons name="lock-closed-outline" size={20} color={COLOR.GRAY_DARK} style={styles.inputIcon} />
                 <TextInput
                     style={styles.input}
                     placeholder="Enter your password"
-                    placeholderTextColor="#888"
+                    placeholderTextColor={COLOR.GRAY_DARK}
                     value={password}
                     onChangeText={setPassword}
-                    secureTextEntry={!showPassword}
-                />
+                    secureTextEntry={!showPassword} />
                 <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
                     <Ionicons
                         name={showPassword ? 'eye-off-outline' : 'eye-outline'}
                         size={20}
-                        color="#888"
-                        style={styles.inputIconRight}
-                    />
+                        color={COLOR.GRAY_DARK}
+                        style={styles.inputIconRight} />
                 </TouchableOpacity>
             </View>
-
-            {/* Forgot Password */}
             <TouchableOpacity
                 style={styles.forgotBtn}
-                onPress={() => navigation.navigate('ForgotPasswordScreen')}
-            >
-                <Text style={styles.forgotText}>Forgot Password?</Text>
+                onPress={() => navigation.navigate('ForgotPasswordScreen')}>
+                <Text style={styles.forgotText}>{"Forgot Password?"}</Text>
             </TouchableOpacity>
-
-            {/* Sign In Button */}
             <TouchableOpacity
                 style={[
                     styles.signInBtn,
                     (!email.trim() || !password.trim()) && { opacity: 0.5 }
                 ]}
                 disabled={!email.trim() || !password.trim()}
-                onPress={handleSignIn}
-            >
-                <Text style={styles.signInBtnText}>
-                    Sign In  <Ionicons name="arrow-forward" size={16} color="#fff" />
-                </Text>
+                onPress={handleSignIn}>
+                <Text style={styles.signInBtnText}>{"Sign In"}  <Ionicons name="arrow-forward" size={16} color={COLOR.WHITE} /></Text>
             </TouchableOpacity>
-
-            {/* Or Continue With */}
             <View style={styles.orRow}>
                 <View style={styles.orLine} />
-                <Text style={styles.orText}>OR CONTINUE WITH</Text>
+                <Text style={styles.orText}>{"OR CONTINUE WITH"}</Text>
                 <View style={styles.orLine} />
             </View>
-
-            {/* Google Button */}
             <TouchableOpacity style={styles.googleBtn}>
-                <Ionicons name="logo-google" size={20} color="#1976d2" style={{ marginRight: 8 }} />
-                <Text style={styles.googleBtnText}>Continue with Google</Text>
+                <Ionicons name="logo-google" size={20} color={COLOR.DEFALUTCOLOR} style={{ marginRight: 8 }} />
+                <Text style={styles.googleBtnText}>{"Continue with Google"}</Text>
             </TouchableOpacity>
-
-            {/* Sign Up Link */}
             <View style={styles.signupRow}>
-                <Text style={styles.signupText}>Don't have an account? </Text>
+                <Text style={styles.signupText}>{"Don't have an account? "}</Text>
                 <TouchableOpacity onPress={() => navigation.navigate('RegisterScreen')}>
-                    <Text style={styles.signupLink}>Sign Up</Text>
+                    <Text style={styles.signupLink}>{"Sign Up"}</Text>
                 </TouchableOpacity>
             </View>
-
-            {/* Shiksha / Explore as Guest Button */}
             <TouchableOpacity
                 style={styles.guestBtn}
-                onPress={() => navigation.replace('main')}
-            >
-                <Text style={styles.guestBtnText}>Explore Shiksha</Text>
+                onPress={() => navigation.replace('main')}>
+                <Text style={styles.guestBtnText}>{"Explore Shiksha"}</Text>
             </TouchableOpacity>
         </View>
     );
@@ -133,7 +109,7 @@ const LoginScreen = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#f6f8fa',
+        backgroundColor: COLOR.LIGHTDEFALUTCOLOR,
         alignItems: 'center',
         justifyContent: 'center',
         paddingHorizontal: 24,
@@ -146,7 +122,7 @@ const styles = StyleSheet.create({
         width: 64,
         height: 64,
         borderRadius: 32,
-        backgroundColor: '#eaf2fd',
+        backgroundColor: COLOR.LIGHTLOGODEFALUTCOLOR,
         alignItems: 'center',
         justifyContent: 'center',
         marginBottom: 8,
@@ -154,12 +130,12 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 26,
         fontWeight: 'bold',
-        color: '#222',
+        color: COLOR.BLACK,
         marginBottom: 4,
         textAlign: 'center',
     },
     subtitle: {
-        color: '#888',
+        color: COLOR.GRAY_DARK,
         fontSize: 15,
         marginBottom: 28,
         textAlign: 'center',
@@ -167,10 +143,10 @@ const styles = StyleSheet.create({
     inputWrapper: {
         flexDirection: 'row',
         alignItems: 'center',
-        backgroundColor: '#fff',
+        backgroundColor: COLOR.WHITE,
         borderRadius: 12,
         borderWidth: 1,
-        borderColor: '#e0e0e0',
+        borderColor: COLOR.LIGHT_GREY,
         marginBottom: 16,
         paddingHorizontal: 12,
         paddingVertical: 2,
@@ -185,7 +161,7 @@ const styles = StyleSheet.create({
     input: {
         flex: 1,
         fontSize: 16,
-        color: '#222',
+        color: COLOR.BLACK,
         paddingVertical: 12,
     },
     forgotBtn: {
@@ -193,12 +169,12 @@ const styles = StyleSheet.create({
         marginBottom: 18,
     },
     forgotText: {
-        color: '#1976d2',
+        color: COLOR.DEFALUTCOLOR,
         fontWeight: 'bold',
         fontSize: 14,
     },
     signInBtn: {
-        backgroundColor: '#1976d2',
+        backgroundColor: COLOR.DEFALUTCOLOR,
         borderRadius: 12,
         paddingVertical: 14,
         alignItems: 'center',
@@ -209,7 +185,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
     },
     signInBtnText: {
-        color: '#fff',
+        color: COLOR.WHITE,
         fontWeight: 'bold',
         fontSize: 16,
     },
@@ -217,7 +193,7 @@ const styles = StyleSheet.create({
         width: '100%',
         borderRadius: 12,
         borderWidth: 2,
-        borderColor: '#1976d2',
+        borderColor: COLOR.DEFALUTCOLOR,
         paddingVertical: 14,
         alignItems: 'center',
         justifyContent: 'center',
@@ -226,7 +202,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
     },
     guestBtnText: {
-        color: '#1976d2',
+        color: COLOR.DEFALUTCOLOR,
         fontWeight: 'bold',
         fontSize: 16,
     },
@@ -239,21 +215,21 @@ const styles = StyleSheet.create({
     orLine: {
         flex: 1,
         height: 1,
-        backgroundColor: '#e0e0e0',
+        backgroundColor: COLOR.LIGHT_GREY,
     },
     orText: {
         marginHorizontal: 10,
-        color: '#888',
+        color: COLOR.GRAY_DARK,
         fontSize: 13,
         fontWeight: 'bold',
     },
     googleBtn: {
         flexDirection: 'row',
         alignItems: 'center',
-        backgroundColor: '#fff',
+        backgroundColor: COLOR.WHITE,
         borderRadius: 12,
         borderWidth: 1,
-        borderColor: '#e0e0e0',
+        borderColor: COLOR.LIGHT_GREY,
         paddingVertical: 12,
         paddingHorizontal: 16,
         width: '100%',
@@ -261,7 +237,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     googleBtnText: {
-        color: '#1976d2',
+        color: COLOR.DEFALUTCOLOR,
         fontWeight: 'bold',
         fontSize: 15,
     },
@@ -273,11 +249,11 @@ const styles = StyleSheet.create({
         marginBottom: 16,
     },
     signupText: {
-        color: '#888',
+        color: COLOR.GRAY_DARK,
         fontSize: 14,
     },
     signupLink: {
-        color: '#1976d2',
+        color: COLOR.DEFALUTCOLOR,
         fontWeight: 'bold',
         fontSize: 14,
     },

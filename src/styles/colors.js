@@ -1,11 +1,12 @@
 
 
 //APP MAIN COLOR
-export const DEFALUTCOLOR = '#0E69C4';
-export const LIGHTDEFALUTCOLOR = '#0E69C4';
+export const DEFALUTCOLOR = '#1976d2';
+export const LIGHTDEFALUTCOLOR = '#f6f8fa';
+export const LIGHTLOGODEFALUTCOLOR = '#eaf2fd';
 export const BUTTONCOLOR = '#FF8533';
 export const BACKGROUNDCOLOR = '#FFFFFF';
-export const STATUSBARCOLOR = '#0E69C4';
+// export const STATUSBARCOLOR = '#0E69C4';
 export const WHITE = '#FFFFFF';
 export const BLACK = '#000000';
 export const HEADERCOLOR = '#2F408F';
@@ -27,13 +28,14 @@ export const GREY = '#807D79';
 export const BLACK_OLIVE = '#403F3D';
 export const WELDON_BLUE = '#7D95B6';
 export const LIGHT_BLACK = '#666666';
+export const LIGHT_GREY = '#e0e0e0';
 
 //LINE VIEW COLOR
 export const BRIGHT_GRAY = '#EEEEEE';
 
 //holiday title color
 export const GREEN = '#008000';
-
+export const GREEN_LIGHT = '#1db954';
 // input place holder color
 export const PLACEHOLDER_COLOR = '#999999';
 
