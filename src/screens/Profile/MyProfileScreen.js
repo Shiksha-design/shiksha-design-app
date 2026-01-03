@@ -4,6 +4,7 @@ import { useNavigation } from "@react-navigation/native";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { AUTHUSERINFO } from "../../context/actions/type";
+import authEvent from '../../context/authEvent';
 import * as COLOR from "../../styles/colors";
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { StatusBar } from 'react-native'
@@ -11,8 +12,15 @@ const MyProfileScreen = () => {
     const navigation = useNavigation();
 
     const handleLogout = async () => {
-        await AsyncStorage.removeItem(AUTHUSERINFO);
-        navigation.replace("Main");
+        try {
+            await AsyncStorage.removeItem(AUTHUSERINFO);
+        } catch (err) {
+            console.warn('Error clearing auth:', err);
+        }
+        // notify navigator to re-check auth and show unauthenticated tabs
+        authEvent.emit();
+        // reset navigation to Home (unauthenticated tab will be shown)
+        navigation.reset({ index: 0, routes: [{ name: 'Home' }] });
     };
 
     return (

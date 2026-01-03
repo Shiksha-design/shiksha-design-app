@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TextInput, TouchableOpacity , Image } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { useNavigation } from '@react-navigation/native';
 import * as COLOR from '../../styles/colors';
+import * as IMAGE from '../../styles/image';
 
 const ForgotPasswordScreen = () => {
     const [email, setEmail] = useState('');
@@ -10,9 +11,10 @@ const ForgotPasswordScreen = () => {
 
     return (
         <View style={styles.container}>
-            <View style={styles.iconCircle}>
+            {/* <View style={styles.iconCircle}>
                 <Ionicons name="mail-open-outline" size={36} color={COLOR.DEFALUTCOLOR} />
-            </View>
+            </View> */}
+              <Image source={IMAGE.SHIKSHALOGO} style={{ width: 150, height: 60, resizeMode: 'contain' , marginBottom: 18 }} />
             <Text style={styles.title}>{"Forgot Password?"}</Text>
             <Text style={styles.subtitle}>
                 {"Enter your registered email address and we'll send you a link to reset your password."}

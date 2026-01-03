@@ -4,11 +4,14 @@ import {
     Text,
     StyleSheet,
     TextInput,
-    TouchableOpacity,
+    TouchableOpacity,Image
 } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { useNavigation } from '@react-navigation/native';
 import * as COLOR from '../../styles/colors';
+import * as IMAGE from '../../styles/image';
+import { SafeAreaView } from 'react-native-safe-area-context'
+import { StatusBar } from 'react-native'
 
 const RegisterScreen = () => {
     const [name, setName] = useState('');
@@ -17,14 +20,18 @@ const RegisterScreen = () => {
     const [confirm, setConfirm] = useState('');
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirm, setShowConfirm] = useState(false);
+    const [agreed, setAgreed] = useState(false);
     const navigation = useNavigation();
 
     return (
-        <View style={styles.container}>
+        <SafeAreaView style={{ flex: 1, }}>
+        <StatusBar barStyle={"dark-content"} />
+          <View style={styles.container}>
             <View style={styles.logoWrapper}>
-                <View style={styles.logoCircle}>
+                {/* <View style={styles.logoCircle}>
                     <Ionicons name="school-outline" size={36} color={COLOR.DEFALUTCOLOR} />
-                </View>
+                </View> */}
+                 <Image source={IMAGE.SHIKSHALOGO} style={{ width: 150, height: 60, resizeMode: 'contain' }} />
             </View>
             <Text style={styles.title}>{"Create Account"}</Text>
             <Text style={styles.subtitle}>{"Start your learning journey today"}</Text>
@@ -97,6 +104,14 @@ const RegisterScreen = () => {
                         style={styles.inputIconRight} />
                 </TouchableOpacity>
             </View>
+            <View style={styles.termsRow}>
+                <TouchableOpacity
+                    style={[styles.checkbox, agreed && { backgroundColor: COLOR.DEFALUTCOLOR, borderColor: COLOR.DEFALUTCOLOR }]}
+                    onPress={() => setAgreed(!agreed)}>
+                    {agreed && <Ionicons name="checkmark" size={14} color={COLOR.WHITE} />}
+                </TouchableOpacity>
+                <Text style={styles.termsText}>{"I agreed to the terms & conditions"}</Text>
+            </View>
             <TouchableOpacity style={styles.createBtn}>
                 <Text style={styles.createBtnText}>{"Create Account"}  <Ionicons name="arrow-forward" size={16} color={COLOR.WHITE} /></Text>
             </TouchableOpacity>
@@ -106,7 +121,7 @@ const RegisterScreen = () => {
                 <View style={styles.orLine} />
             </View>
             <TouchableOpacity style={styles.googleBtn}>
-                <Ionicons name="logo-google" size={20} color={COLOR.DEFALUTCOLOR} style={{ marginRight: 8 }} />
+                <Image source={IMAGE.GOOGLE} style={{ width: 20, height: 20, marginRight: 8, resizeMode: 'contain' }} />
                 <Text style={styles.googleBtnText}>{"Continue with Google"}</Text>
             </TouchableOpacity>
             <View style={styles.signupRow}>
@@ -121,6 +136,8 @@ const RegisterScreen = () => {
                 <Text style={styles.guestBtnText}>{"Explore Shiksha"}</Text>
             </TouchableOpacity>
         </View>
+</SafeAreaView>
+      
     );
 };
 
@@ -241,7 +258,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         marginBottom: 8,
-        marginTop: 0,
+        // marginTop: 0,
         backgroundColor: 'transparent',
     },
     guestBtnText: {
@@ -282,6 +299,28 @@ const styles = StyleSheet.create({
         color: COLOR.DEFALUTCOLOR,
         fontWeight: 'bold',
         fontSize: 14,
+    },
+    termsRow: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        width: '100%',
+        marginBottom: 12,
+        marginLeft: 14,
+    },
+    checkbox: {
+        width: 18,
+        height: 18,
+        borderWidth: 1,
+        borderColor: COLOR.LIGHT_GREY,
+        marginRight: 8,
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: 4,
+    },
+    termsText: {
+        color: COLOR.GRAY_DARK,
+        fontSize: 13,
+        flex: 1,
     },
 });
 

@@ -22,9 +22,9 @@ const HelpAndSupportScreen = (props) => {
     const [agree, setAgree] = useState(true);
 
     return (
-        <SafeAreaView style={{ flex: 1, backgroundColor: BACKGROUNDCOLOR }}>
-            <StatusBar backgroundColor={DEFALUTCOLOR} barStyle={"dark-content"} />
-            <ScrollView contentContainerStyle={styles.container}>
+         <SafeAreaView style={{ flex: 1, backgroundColor: COLOR.BACKGROUNDCOLOR }}>
+            <StatusBar backgroundColor={COLOR.DEFALUTCOLOR} barStyle={"dark-content"} />
+            <ScrollView contentContainerStyle={styles.scrollContent} keyboardShouldPersistTaps="handled">
                 <TouchableOpacity
                     style={styles.backBtn}
                     onPress={() => props.navigation.goBack()}
@@ -101,21 +101,21 @@ const HelpAndSupportScreen = (props) => {
 };
 
 const styles = StyleSheet.create({
-    container: {
+    scrollContent: {
         flexGrow: 1,
-        backgroundColor: COLOR.LIGHTDEFALUTCOLOR,
-        justifyContent: 'center',
+        backgroundColor: COLOR.BACKGROUNDCOLOR,
+        justifyContent: 'flex-start',
         alignItems: 'center',
         padding: 16,
+        paddingTop: 24,
     },
     card: {
-        backgroundColor: COLOR.LIGHTDEFALUTCOLOR,
+        backgroundColor: COLOR.WHITE,
         borderRadius: 12,
-        padding: 18,
+        padding: 20,
         width: '100%',
-        maxWidth: 420,
-        marginTop: 32,
-        marginBottom: 32,
+        maxWidth: 720,
+        marginVertical: 24,
         shadowColor: COLOR.BLACK,
         shadowOpacity: 0.04,
         shadowRadius: 6,
@@ -124,8 +124,8 @@ const styles = StyleSheet.create({
     header: {
         fontSize: 20,
         fontWeight: 'bold',
-        color: COLOR.DEFALUTCOLOR,
-        marginBottom: 18,
+        color: COLOR.BLACK,
+        marginBottom: 16,
         textAlign: 'center',
     },
     label: {
@@ -143,10 +143,12 @@ const styles = StyleSheet.create({
         fontSize: 15,
         borderWidth: 1,
         borderColor: COLOR.GRAY_LIGHT,
+        width: '100%',
     },
     row: {
         flexDirection: 'row',
         justifyContent: 'space-between',
+        marginTop: 8,
     },
     phoneRow: {
         flexDirection: 'row',
@@ -174,6 +176,7 @@ const styles = StyleSheet.create({
         alignItems: 'flex-start',
         marginTop: 14,
         marginBottom: 10,
+        paddingRight: 8,
     },
     checkboxBtn: {
         marginTop: 2,
@@ -204,8 +207,7 @@ const styles = StyleSheet.create({
     },
     backBtn: {
         position: 'absolute',
-        alignSelf: "center",
-        top: 30,
+        top: 20,
         left: 16,
         width: 36,
         height: 36,
@@ -217,6 +219,10 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.08,
         shadowRadius: 4,
         elevation: 3,
+    },
+    textarea: {
+        height: 100,
+        textAlignVertical: 'top',
     },
 });
 

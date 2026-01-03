@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TextInput, TouchableOpacity ,Image} from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { useNavigation } from '@react-navigation/native';
 import * as COLOR from '../../styles/colors';
+import * as IMAGE from '../../styles/image';
 
 const NewPasswordScren = () => {
     const [password, setPassword] = useState('');
@@ -13,9 +14,10 @@ const NewPasswordScren = () => {
 
     return (
         <View style={styles.container}>
-            <View style={styles.iconCircle}>
+            {/* <View style={styles.iconCircle}>
                 <Ionicons name="lock-closed-outline" size={36} color={COLOR.DEFALUTCOLOR} />
-            </View>
+            </View> */}
+              <Image source={IMAGE.SHIKSHALOGO} style={{ width: 150, height: 60, resizeMode: 'contain' }} />
             <Text style={styles.title}>{"Set New Password"}</Text>
             <Text style={styles.subtitle}>{"Enter your new password below. Make sure it's strong and easy to remember."}</Text>
             <View style={styles.inputWrapper}>

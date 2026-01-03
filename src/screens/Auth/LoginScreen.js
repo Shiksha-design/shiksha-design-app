@@ -8,6 +8,8 @@ import {
     Image
 } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import * as IMAGE from '../../styles/image';
+import authEvent from '../../context/authEvent';
 import { useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { AUTHUSERINFO } from '../../context/actions/type';
@@ -22,20 +24,25 @@ const LoginScreen = () => {
     const handleSignIn = async () => {
         // Save user info to local storage
         const userInfo = { email, password };
-        await AsyncStorage.setItem(AUTHUSERINFO, JSON.stringify(userInfo));
-        // Instead of navigating to a tab, just reload the navigation state
-        navigation.reset({
-            index: 0,
-            routes: [{ name: 'Home' }],
-        });
+        try {
+            await AsyncStorage.setItem(AUTHUSERINFO, JSON.stringify(userInfo));
+            // notify navigator to re-check auth and switch tab flow
+            authEvent.emit();
+            navigation.reset({
+                index: 0,
+                routes: [{ name: 'Home' }],
+            });
+        } catch (err) {
+            console.warn('Login error:', err);
+        }
     };
-
     return (
         <View style={styles.container}>
             <View style={styles.logoWrapper}>
-                <View style={styles.logoCircle}>
-                    <Ionicons name="school-outline" size={36} color={COLOR.DEFALUTCOLOR} />
-                </View>
+                {/* <View style={styles.logoCircle}>
+                    
+                </View> */}
+                <Image source={IMAGE.SHIKSHALOGO} style={{ width: 150, height: 60, resizeMode: 'contain' }} />
             </View>
             <Text style={styles.title}>{"Welcome Back"}</Text>
             <Text style={styles.subtitle}>{"Sign in to continue learning"}</Text>
@@ -88,7 +95,7 @@ const LoginScreen = () => {
                 <View style={styles.orLine} />
             </View>
             <TouchableOpacity style={styles.googleBtn}>
-                <Ionicons name="logo-google" size={20} color={COLOR.DEFALUTCOLOR} style={{ marginRight: 8 }} />
+                <Image source={IMAGE.GOOGLE} style={{ width: 20, height: 20, marginRight: 8, resizeMode: 'contain' }} />
                 <Text style={styles.googleBtnText}>{"Continue with Google"}</Text>
             </TouchableOpacity>
             <View style={styles.signupRow}>
@@ -99,7 +106,7 @@ const LoginScreen = () => {
             </View>
             <TouchableOpacity
                 style={styles.guestBtn}
-                onPress={() => navigation.replace('main')}>
+                onPress={() => navigation.navigate('Explore')}>
                 <Text style={styles.guestBtnText}>{"Explore Shiksha"}</Text>
             </TouchableOpacity>
         </View>

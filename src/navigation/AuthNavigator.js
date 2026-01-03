@@ -21,6 +21,7 @@ import EDITPROFILESCREEN from '../screens/Profile/EditProfileScreen';
 import MYPROFILESCREEN from '../screens/Profile/MyProfileScreen';
 import HELPANDSUPPORTSCREEN from '../screens/Support/HelpAndSupportScreen';
 import { AUTHUSERINFO } from '../context/actions/type';
+import authEvent from '../context/authEvent';
 
 const AuthStack = createStackNavigator();
 const HomeStack = createStackNavigator();
@@ -152,13 +153,12 @@ export default function NavigationsApp() {
             const user = await AsyncStorage.getItem(AUTHUSERINFO);
             setIsAuth(!!user);
         };
-        // Listen for storage changes (login/logout)
-        const focusListener = () => checkAuth();
-        // Add event listener for navigation focus
-        const unsubscribe = () => { };
+        // initial check
         checkAuth();
+        // subscribe to auth events (logout/login)
+        const unsub = authEvent.subscribe(() => checkAuth());
         return () => {
-            if (unsubscribe) unsubscribe();
+            if (unsub) unsub();
         };
     }, []);
 

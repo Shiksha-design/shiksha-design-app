@@ -14,7 +14,7 @@ import * as COLOR from "../../styles/colors";
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { StatusBar } from 'react-native';
 import Ionicons from "react-native-vector-icons/Ionicons";
-
+import * as IMAGE from '../../styles/image';
 
 const categories = [
     { label: "All" },
@@ -136,10 +136,8 @@ const ExploreScreen = () => {
                 <View style={styles.container}>
                     <View style={styles.header}>
                         <View style={{ flexDirection: "row", alignItems: "center" }}>
-                            <View style={styles.avatar}>
-                                <Text style={styles.avatarText}>L</Text>
-                            </View>
-                            <Text style={styles.title}>{"Learne"}</Text>
+                           <Image source={IMAGE.SHIKSHALOGO} style={{ width: 60, height: 30, resizeMode: 'contain' }} />
+                                               
                         </View>
                         <Text style={styles.headerTitle}>{"All Courses"}</Text>
                         <TouchableOpacity activeOpacity={0.7}>

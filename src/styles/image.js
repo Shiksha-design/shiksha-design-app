@@ -3,7 +3,7 @@ import COURSEIMAGE from '../../src/assets/images/courseimage.png';
 import LOGINICON from '../../src/assets/images/loginicon.png';
 import SHIKSHALOGO from '../../src/assets/images/shikshalogo.png';
 import DASHBOARDHEADER from '../../src/assets/images/dashboardheader.png';
-
+import GOOGLE from '../../src/assets/images/google.png';
 export {
-    DEFAULTSPLASH, COURSEIMAGE, LOGINICON, SHIKSHALOGO, DASHBOARDHEADER
+    DEFAULTSPLASH, COURSEIMAGE, LOGINICON, SHIKSHALOGO, DASHBOARDHEADER, GOOGLE
 };

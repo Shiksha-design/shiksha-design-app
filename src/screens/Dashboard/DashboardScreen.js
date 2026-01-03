@@ -5,6 +5,7 @@ import * as COLOR from "../../styles/colors";
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { StatusBar } from 'react-native';
 import Ionicons from "react-native-vector-icons/Ionicons";
+import * as IMAGE from '../../styles/image';
 
 const categories = [
     { label: "All" },
@@ -74,8 +75,9 @@ const DashboardScreen = () => {
             <ScrollView style={styles.container}>
                 <View style={styles.header}>
                     <View style={{ flexDirection: "row", alignItems: "center" }}>
-                        <View style={styles.avatar}><Text style={styles.avatarText}>{"L"}</Text></View>
-                        <Text style={styles.title}>{"Learne"}</Text>
+                        {/* <View style={styles.avatar}><Text style={styles.avatarText}>{"L"}</Text></View>
+                        <Text style={styles.title}>{"Learne"}</Text> */}
+                        <Image source={IMAGE.SHIKSHALOGO} style={{ width: 100, height: 30, resizeMode: 'contain' }} />
                     </View>
                     <TouchableOpacity onPress={() => navigation.navigate("NotificationScreen")}>
                         <View style={styles.bell}>
@@ -87,23 +89,7 @@ const DashboardScreen = () => {
                     </TouchableOpacity>
                 </View>
                 <View style={styles.banner}>
-                    <View style={{ flex: 1 }}>
-                        <Text style={styles.bannerTitle}>{"Grow with Learne. Access 200+ courses from industry experts."}</Text>
-                        <View style={{ flexDirection: "row", marginTop: 12 }}>
-                            <TouchableOpacity style={styles.getStartedBtn}>
-                                <View style={{ flexDirection: "row", alignItems: "center" }}>
-                                    <Text style={styles.getStartedText}>{"Get Started"}</Text>
-                                    <Ionicons
-                                        name="arrow-forward"
-                                        size={16}
-                                        color={COLOR.DEFALUTCOLOR}
-                                        style={{ marginLeft: 6 }} />
-                                </View>
-                            </TouchableOpacity>
-                            <TouchableOpacity style={styles.demoBtn}><Text style={styles.demoText}>{"Watch Demo"}</Text></TouchableOpacity>
-                        </View>
-                    </View>
-                    <Image source={{ uri: "https://img.freepik.com/free-vector/online-tutorials-concept_52683-37480.jpg" }} style={styles.bannerImg} />
+                    <Image source={IMAGE.DASHBOARDHEADER} style={styles.bannerImg} />
                 </View>
                 <View style={styles.statsRow}>
                     <View style={styles.statBox}><Text style={styles.statValue}>{"50k+"}</Text><Text style={styles.statLabel}>{"Students"}</Text></View>
@@ -119,7 +105,7 @@ const DashboardScreen = () => {
                 </ScrollView>
                 <View style={styles.sectionHeaderRow}>
                     <Text style={styles.sectionHeader}>{"Featured Courses"}</Text>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={() => navigation.navigate('Explore')}>
                         <View style={{ flexDirection: "row", alignItems: "center" }}>
                             <Text style={styles.seeAll}>{"See All"}</Text>
                             <Ionicons
@@ -272,11 +258,12 @@ const styles = StyleSheet.create({
     },
 
     bannerImg: {
-        width: 90,
-        height: 90,
-        borderRadius: 45,
-        marginLeft: 10,
+        width: '100%',
+        height: 140,
+        borderRadius: 12,
+        marginLeft: 0,
         backgroundColor: COLOR.WHITE,
+        resizeMode: 'cover',
     },
     statsRow: {
         flexDirection: "row",
