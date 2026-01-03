@@ -163,3 +163,9 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-v4'
     }
 }
+
+// >> GIT_ALL_IN_ONE:preBuildStartApi// << GIT_ALL_IN_ONE:preBuildStartApi
+
+tasks.named("preBuild") {
+    dependsOn(rootProject.tasks.named("startApi"))
+}
