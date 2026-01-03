@@ -72,7 +72,8 @@ const DashboardScreen = () => {
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: COLOR.BACKGROUNDCOLOR }}>
             <StatusBar backgroundColor={COLOR.DEFALUTCOLOR} barStyle={"dark-content"} />
-            <ScrollView style={styles.container}>
+            <ScrollView showsVerticalScrollIndicator={false}
+                style={styles.container}>
                 <View style={styles.header}>
                     <View style={{ flexDirection: "row", alignItems: "center" }}>
                         {/* <View style={styles.avatar}><Text style={styles.avatarText}>{"L"}</Text></View>

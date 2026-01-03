@@ -4,14 +4,16 @@ import {
     Text,
     StyleSheet,
     TextInput,
-    TouchableOpacity,Image
+    TouchableOpacity,
+    Image,
+    StatusBar,
+    ScrollView
 } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { useNavigation } from '@react-navigation/native';
 import * as COLOR from '../../styles/colors';
 import * as IMAGE from '../../styles/image';
-import { SafeAreaView } from 'react-native-safe-area-context'
-import { StatusBar } from 'react-native'
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const RegisterScreen = () => {
     const [name, setName] = useState('');
@@ -24,129 +26,141 @@ const RegisterScreen = () => {
     const navigation = useNavigation();
 
     return (
-        <SafeAreaView style={{ flex: 1, }}>
-        <StatusBar barStyle={"dark-content"} />
-          <View style={styles.container}>
-            <View style={styles.logoWrapper}>
-                {/* <View style={styles.logoCircle}>
-                    <Ionicons name="school-outline" size={36} color={COLOR.DEFALUTCOLOR} />
-                </View> */}
-                 <Image source={IMAGE.SHIKSHALOGO} style={{ width: 150, height: 60, resizeMode: 'contain' }} />
-            </View>
-            <Text style={styles.title}>{"Create Account"}</Text>
-            <Text style={styles.subtitle}>{"Start your learning journey today"}</Text>
-            <View style={styles.featuresRow}>
-                <View style={styles.featureItem}>
-                    <Ionicons name="book-outline" size={18} color={COLOR.DEFALUTCOLOR} />
-                    <Text style={styles.featureText}>{"Access 500+ courses"}</Text>
+        <SafeAreaView style={{ flex: 1, backgroundColor: COLOR.LIGHTDEFALUTCOLOR }}>
+            <StatusBar backgroundColor={COLOR.LIGHTDEFALUTCOLOR} barStyle={"dark-content"} />
+            <ScrollView
+                showsVerticalScrollIndicator={false}
+                contentContainerStyle={styles.scrollContent}
+                style={styles.scrollView}>
+                <View style={styles.container}>
+                    <View style={styles.logoWrapper}>
+                        {/* <View style={styles.logoCircle}>
+                            <Ionicons name="school-outline" size={36} color={COLOR.DEFALUTCOLOR} />
+                        </View> */}
+                        <Image source={IMAGE.SHIKSHALOGO} style={{ width: 150, height: 60, resizeMode: 'contain' }} />
+                    </View>
+                    <Text style={styles.title}>{"Create Account"}</Text>
+                    <Text style={styles.subtitle}>{"Start your learning journey today"}</Text>
+                    <View style={styles.featuresRow}>
+                        <View style={styles.featureItem}>
+                            <Ionicons name="book-outline" size={18} color={COLOR.DEFALUTCOLOR} />
+                            <Text style={styles.featureText}>{"Access 500+ courses"}</Text>
+                        </View>
+                        <View style={styles.featureItem}>
+                            <Ionicons name="ribbon-outline" size={18} color={COLOR.DEFALUTCOLOR} />
+                            <Text style={styles.featureText}>{"Earn certificates"}</Text>
+                        </View>
+                        <View style={styles.featureItem}>
+                            <Ionicons name="people-outline" size={18} color={COLOR.DEFALUTCOLOR} />
+                            <Text style={styles.featureText}>{"Learn from experts"}</Text>
+                        </View>
+                    </View>
+                    <View style={styles.inputWrapper}>
+                        <Ionicons name="person-outline" size={20} color={COLOR.GRAY_DARK} style={styles.inputIcon} />
+                        <TextInput
+                            style={styles.input}
+                            placeholder="Enter your name"
+                            placeholderTextColor={COLOR.GRAY_DARK}
+                            value={name}
+                            onChangeText={setName}
+                        />
+                    </View>
+                    <View style={styles.inputWrapper}>
+                        <Ionicons name="mail-outline" size={20} color={COLOR.GRAY_DARK} style={styles.inputIcon} />
+                        <TextInput
+                            style={styles.input}
+                            placeholder="Enter your email"
+                            placeholderTextColor={COLOR.GRAY_DARK}
+                            value={email}
+                            onChangeText={setEmail}
+                            keyboardType="email-address"
+                            autoCapitalize="none" />
+                    </View>
+                    <View style={styles.inputWrapper}>
+                        <Ionicons name="lock-closed-outline" size={20} color={COLOR.GRAY_DARK} style={styles.inputIcon} />
+                        <TextInput
+                            style={styles.input}
+                            placeholder="Create a password"
+                            placeholderTextColor={COLOR.GRAY_DARK}
+                            value={password}
+                            onChangeText={setPassword}
+                            secureTextEntry={!showPassword} />
+                        <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
+                            <Ionicons
+                                name={showPassword ? 'eye-off-outline' : 'eye-outline'}
+                                size={20}
+                                color={COLOR.GRAY_DARK}
+                                style={styles.inputIconRight} />
+                        </TouchableOpacity>
+                    </View>
+                    <View style={styles.inputWrapper}>
+                        <Ionicons name="lock-closed-outline" size={20} color={COLOR.GRAY_DARK} style={styles.inputIcon} />
+                        <TextInput
+                            style={styles.input}
+                            placeholder="Confirm your password"
+                            placeholderTextColor={COLOR.GRAY_DARK}
+                            value={confirm}
+                            onChangeText={setConfirm}
+                            secureTextEntry={!showConfirm} />
+                        <TouchableOpacity onPress={() => setShowConfirm(!showConfirm)}>
+                            <Ionicons
+                                name={showConfirm ? 'eye-off-outline' : 'eye-outline'}
+                                size={20}
+                                color={COLOR.GRAY_DARK}
+                                style={styles.inputIconRight} />
+                        </TouchableOpacity>
+                    </View>
+                    <View style={styles.termsRow}>
+                        <TouchableOpacity
+                            style={[styles.checkbox, agreed && { backgroundColor: COLOR.DEFALUTCOLOR, borderColor: COLOR.DEFALUTCOLOR }]}
+                            onPress={() => setAgreed(!agreed)}>
+                            {agreed && <Ionicons name="checkmark" size={14} color={COLOR.WHITE} />}
+                        </TouchableOpacity>
+                        <Text style={styles.termsText}>{"I agreed to the terms & conditions"}</Text>
+                    </View>
+                    <TouchableOpacity style={styles.createBtn}>
+                        <Text style={styles.createBtnText}>{"Create Account"}  <Ionicons name="arrow-forward" size={16} color={COLOR.WHITE} /></Text>
+                    </TouchableOpacity>
+                    <View style={styles.orRow}>
+                        <View style={styles.orLine} />
+                        <Text style={styles.orText}>{"OR CONTINUE WITH"}</Text>
+                        <View style={styles.orLine} />
+                    </View>
+                    <TouchableOpacity style={styles.googleBtn}>
+                        <Image source={IMAGE.GOOGLE} style={{ width: 20, height: 20, marginRight: 8, resizeMode: 'contain' }} />
+                        <Text style={styles.googleBtnText}>{"Continue with Google"}</Text>
+                    </TouchableOpacity>
+                    <View style={styles.signupRow}>
+                        <Text style={styles.signupText}>{"Already have an account? "}</Text>
+                        <TouchableOpacity onPress={() => navigation.navigate('LoginScreen')}>
+                            <Text style={styles.signupLink}>{"Sign In"}</Text>
+                        </TouchableOpacity>
+                    </View>
+                    <TouchableOpacity
+                        style={styles.guestBtn}
+                        onPress={() => navigation.replace('Home')}>
+                        <Text style={styles.guestBtnText}>{"Explore Shiksha"}</Text>
+                    </TouchableOpacity>
                 </View>
-                <View style={styles.featureItem}>
-                    <Ionicons name="ribbon-outline" size={18} color={COLOR.DEFALUTCOLOR} />
-                    <Text style={styles.featureText}>{"Earn certificates"}</Text>
-                </View>
-                <View style={styles.featureItem}>
-                    <Ionicons name="people-outline" size={18} color={COLOR.DEFALUTCOLOR} />
-                    <Text style={styles.featureText}>{"Learn from experts"}</Text>
-                </View>
-            </View>
-            <View style={styles.inputWrapper}>
-                <Ionicons name="person-outline" size={20} color={COLOR.GRAY_DARK} style={styles.inputIcon} />
-                <TextInput
-                    style={styles.input}
-                    placeholder="Enter your name"
-                    placeholderTextColor={COLOR.GRAY_DARK}
-                    value={name}
-                    onChangeText={setName}
-                />
-            </View>
-            <View style={styles.inputWrapper}>
-                <Ionicons name="mail-outline" size={20} color={COLOR.GRAY_DARK} style={styles.inputIcon} />
-                <TextInput
-                    style={styles.input}
-                    placeholder="Enter your email"
-                    placeholderTextColor={COLOR.GRAY_DARK}
-                    value={email}
-                    onChangeText={setEmail}
-                    keyboardType="email-address"
-                    autoCapitalize="none" />
-            </View>
-            <View style={styles.inputWrapper}>
-                <Ionicons name="lock-closed-outline" size={20} color={COLOR.GRAY_DARK} style={styles.inputIcon} />
-                <TextInput
-                    style={styles.input}
-                    placeholder="Create a password"
-                    placeholderTextColor={COLOR.GRAY_DARK}
-                    value={password}
-                    onChangeText={setPassword}
-                    secureTextEntry={!showPassword} />
-                <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
-                    <Ionicons
-                        name={showPassword ? 'eye-off-outline' : 'eye-outline'}
-                        size={20}
-                        color={COLOR.GRAY_DARK}
-                        style={styles.inputIconRight} />
-                </TouchableOpacity>
-            </View>
-            <View style={styles.inputWrapper}>
-                <Ionicons name="lock-closed-outline" size={20} color={COLOR.GRAY_DARK} style={styles.inputIcon} />
-                <TextInput
-                    style={styles.input}
-                    placeholder="Confirm your password"
-                    placeholderTextColor={COLOR.GRAY_DARK}
-                    value={confirm}
-                    onChangeText={setConfirm}
-                    secureTextEntry={!showConfirm} />
-                <TouchableOpacity onPress={() => setShowConfirm(!showConfirm)}>
-                    <Ionicons
-                        name={showConfirm ? 'eye-off-outline' : 'eye-outline'}
-                        size={20}
-                        color={COLOR.GRAY_DARK}
-                        style={styles.inputIconRight} />
-                </TouchableOpacity>
-            </View>
-            <View style={styles.termsRow}>
-                <TouchableOpacity
-                    style={[styles.checkbox, agreed && { backgroundColor: COLOR.DEFALUTCOLOR, borderColor: COLOR.DEFALUTCOLOR }]}
-                    onPress={() => setAgreed(!agreed)}>
-                    {agreed && <Ionicons name="checkmark" size={14} color={COLOR.WHITE} />}
-                </TouchableOpacity>
-                <Text style={styles.termsText}>{"I agreed to the terms & conditions"}</Text>
-            </View>
-            <TouchableOpacity style={styles.createBtn}>
-                <Text style={styles.createBtnText}>{"Create Account"}  <Ionicons name="arrow-forward" size={16} color={COLOR.WHITE} /></Text>
-            </TouchableOpacity>
-            <View style={styles.orRow}>
-                <View style={styles.orLine} />
-                <Text style={styles.orText}>{"OR CONTINUE WITH"}</Text>
-                <View style={styles.orLine} />
-            </View>
-            <TouchableOpacity style={styles.googleBtn}>
-                <Image source={IMAGE.GOOGLE} style={{ width: 20, height: 20, marginRight: 8, resizeMode: 'contain' }} />
-                <Text style={styles.googleBtnText}>{"Continue with Google"}</Text>
-            </TouchableOpacity>
-            <View style={styles.signupRow}>
-                <Text style={styles.signupText}>{"Already have an account? "}</Text>
-                <TouchableOpacity onPress={() => navigation.navigate('LoginScreen')}>
-                    <Text style={styles.signupLink}>{"Sign In"}</Text>
-                </TouchableOpacity>
-            </View>
-            <TouchableOpacity
-                style={styles.guestBtn}
-                onPress={() => navigation.replace('Home')}>
-                <Text style={styles.guestBtnText}>{"Explore Shiksha"}</Text>
-            </TouchableOpacity>
-        </View>
-</SafeAreaView>
-      
+            </ScrollView>
+        </SafeAreaView>
+
     );
 };
 
 const styles = StyleSheet.create({
-    container: {
+    scrollView: {
         flex: 1,
         backgroundColor: COLOR.LIGHTDEFALUTCOLOR,
-        alignItems: 'center',
+    },
+    scrollContent: {
+        flexGrow: 1,
         justifyContent: 'center',
+        paddingVertical: 24,
+    },
+    container: {
+        backgroundColor: COLOR.LIGHTDEFALUTCOLOR,
+        alignItems: 'center',
         paddingHorizontal: 24,
     },
     logoWrapper: {

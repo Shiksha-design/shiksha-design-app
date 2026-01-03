@@ -132,12 +132,12 @@ const ExploreScreen = () => {
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: COLOR.BACKGROUNDCOLOR }}>
             <StatusBar backgroundColor={COLOR.DEFALUTCOLOR} barStyle={"dark-content"} />
-            <ScrollView>
+            <ScrollView showsVerticalScrollIndicator={false}>
                 <View style={styles.container}>
                     <View style={styles.header}>
                         <View style={{ flexDirection: "row", alignItems: "center" }}>
-                           <Image source={IMAGE.SHIKSHALOGO} style={{ width: 60, height: 30, resizeMode: 'contain' }} />
-                                               
+                            <Image source={IMAGE.SHIKSHALOGO} style={{ width: 60, height: 30, resizeMode: 'contain' }} />
+
                         </View>
                         <Text style={styles.headerTitle}>{"All Courses"}</Text>
                         <TouchableOpacity activeOpacity={0.7}>

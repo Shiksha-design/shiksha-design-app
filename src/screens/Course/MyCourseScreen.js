@@ -1,9 +1,8 @@
 import React from "react";
-import { View, Text, StyleSheet, Image, FlatList, ScrollView } from "react-native";
+import { View, Text, StyleSheet, Image, FlatList, ScrollView, StatusBar } from "react-native";
+import { SafeAreaView } from 'react-native-safe-area-context';
 import * as COLOR from "../../styles/colors";
 import Ionicons from "react-native-vector-icons/Ionicons";
-import { SafeAreaView } from 'react-native-safe-area-context'
-import { StatusBar } from 'react-native'
 import * as IMAGE from '../../styles/image';
 const courses = [
     {
@@ -41,7 +40,7 @@ const MyCourseScreen = () => {
             <View style={styles.header}>
                 <View style={{ flexDirection: "row", alignItems: "center" }}>
                     <Image source={IMAGE.SHIKSHALOGO} style={{ width: 60, height: 30, resizeMode: 'contain' }} />
-                   
+
                 </View>
                 <Text style={styles.headerTitle}>{"My Courses"}</Text>
                 <View style={styles.bell}>

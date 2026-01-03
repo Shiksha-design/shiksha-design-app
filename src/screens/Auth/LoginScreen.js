@@ -5,8 +5,10 @@ import {
     StyleSheet,
     TextInput,
     TouchableOpacity,
-    Image
+    Image,
+    StatusBar
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import * as IMAGE from '../../styles/image';
 import authEvent from '../../context/authEvent';
@@ -37,79 +39,79 @@ const LoginScreen = () => {
         }
     };
     return (
-        <View style={styles.container}>
-            <View style={styles.logoWrapper}>
-                {/* <View style={styles.logoCircle}>
-                    
-                </View> */}
-                <Image source={IMAGE.SHIKSHALOGO} style={{ width: 150, height: 60, resizeMode: 'contain' }} />
-            </View>
-            <Text style={styles.title}>{"Welcome Back"}</Text>
-            <Text style={styles.subtitle}>{"Sign in to continue learning"}</Text>
-            <View style={styles.inputWrapper}>
-                <Ionicons name="mail-outline" size={20} color={COLOR.GRAY_DARK} style={styles.inputIcon} />
-                <TextInput
-                    style={styles.input}
-                    placeholder={"Enter your email"}
-                    placeholderTextColor={COLOR.GRAY_DARK}
-                    value={email}
-                    onChangeText={setEmail}
-                    keyboardType="email-address"
-                    autoCapitalize="none"
-                />
-            </View>
-            <View style={styles.inputWrapper}>
-                <Ionicons name="lock-closed-outline" size={20} color={COLOR.GRAY_DARK} style={styles.inputIcon} />
-                <TextInput
-                    style={styles.input}
-                    placeholder="Enter your password"
-                    placeholderTextColor={COLOR.GRAY_DARK}
-                    value={password}
-                    onChangeText={setPassword}
-                    secureTextEntry={!showPassword} />
-                <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
-                    <Ionicons
-                        name={showPassword ? 'eye-off-outline' : 'eye-outline'}
-                        size={20}
-                        color={COLOR.GRAY_DARK}
-                        style={styles.inputIconRight} />
+        <SafeAreaView style={{ flex: 1, backgroundColor: COLOR.LIGHTDEFALUTCOLOR }}>
+            <StatusBar backgroundColor={COLOR.LIGHTDEFALUTCOLOR} barStyle={"dark-content"} />
+            <View style={styles.container}>
+                <View style={styles.logoWrapper}>
+                    <Image source={IMAGE.SHIKSHALOGO} style={{ width: 150, height: 60, resizeMode: 'contain' }} />
+                </View>
+                <Text style={styles.title}>{"Welcome Back"}</Text>
+                <Text style={styles.subtitle}>{"Sign in to continue learning"}</Text>
+                <View style={styles.inputWrapper}>
+                    <Ionicons name="mail-outline" size={20} color={COLOR.GRAY_DARK} style={styles.inputIcon} />
+                    <TextInput
+                        style={styles.input}
+                        placeholder={"Enter your email"}
+                        placeholderTextColor={COLOR.GRAY_DARK}
+                        value={email}
+                        onChangeText={setEmail}
+                        keyboardType="email-address"
+                        autoCapitalize="none"
+                    />
+                </View>
+                <View style={styles.inputWrapper}>
+                    <Ionicons name="lock-closed-outline" size={20} color={COLOR.GRAY_DARK} style={styles.inputIcon} />
+                    <TextInput
+                        style={styles.input}
+                        placeholder="Enter your password"
+                        placeholderTextColor={COLOR.GRAY_DARK}
+                        value={password}
+                        onChangeText={setPassword}
+                        secureTextEntry={!showPassword} />
+                    <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
+                        <Ionicons
+                            name={showPassword ? 'eye-off-outline' : 'eye-outline'}
+                            size={20}
+                            color={COLOR.GRAY_DARK}
+                            style={styles.inputIconRight} />
+                    </TouchableOpacity>
+                </View>
+                <TouchableOpacity
+                    style={styles.forgotBtn}
+                    onPress={() => navigation.navigate('ForgotPasswordScreen')}>
+                    <Text style={styles.forgotText}>{"Forgot Password?"}</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                    style={[
+                        styles.signInBtn,
+                        (!email.trim() || !password.trim()) && { opacity: 0.5 }
+                    ]}
+                    disabled={!email.trim() || !password.trim()}
+                    onPress={handleSignIn}>
+                    <Text style={styles.signInBtnText}>{"Sign In"}  <Ionicons name="arrow-forward" size={16} color={COLOR.WHITE} /></Text>
+                </TouchableOpacity>
+                <View style={styles.orRow}>
+                    <View style={styles.orLine} />
+                    <Text style={styles.orText}>{"OR CONTINUE WITH"}</Text>
+                    <View style={styles.orLine} />
+                </View>
+                <TouchableOpacity style={styles.googleBtn}>
+                    <Image source={IMAGE.GOOGLE} style={{ width: 20, height: 20, marginRight: 8, resizeMode: 'contain' }} />
+                    <Text style={styles.googleBtnText}>{"Continue with Google"}</Text>
+                </TouchableOpacity>
+                <View style={styles.signupRow}>
+                    <Text style={styles.signupText}>{"Don't have an account? "}</Text>
+                    <TouchableOpacity onPress={() => navigation.navigate('RegisterScreen')}>
+                        <Text style={styles.signupLink}>{"Sign Up"}</Text>
+                    </TouchableOpacity>
+                </View>
+                <TouchableOpacity
+                    style={styles.guestBtn}
+                    onPress={() => navigation.navigate('Explore')}>
+                    <Text style={styles.guestBtnText}>{"Explore Shiksha"}</Text>
                 </TouchableOpacity>
             </View>
-            <TouchableOpacity
-                style={styles.forgotBtn}
-                onPress={() => navigation.navigate('ForgotPasswordScreen')}>
-                <Text style={styles.forgotText}>{"Forgot Password?"}</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-                style={[
-                    styles.signInBtn,
-                    (!email.trim() || !password.trim()) && { opacity: 0.5 }
-                ]}
-                disabled={!email.trim() || !password.trim()}
-                onPress={handleSignIn}>
-                <Text style={styles.signInBtnText}>{"Sign In"}  <Ionicons name="arrow-forward" size={16} color={COLOR.WHITE} /></Text>
-            </TouchableOpacity>
-            <View style={styles.orRow}>
-                <View style={styles.orLine} />
-                <Text style={styles.orText}>{"OR CONTINUE WITH"}</Text>
-                <View style={styles.orLine} />
-            </View>
-            <TouchableOpacity style={styles.googleBtn}>
-                <Image source={IMAGE.GOOGLE} style={{ width: 20, height: 20, marginRight: 8, resizeMode: 'contain' }} />
-                <Text style={styles.googleBtnText}>{"Continue with Google"}</Text>
-            </TouchableOpacity>
-            <View style={styles.signupRow}>
-                <Text style={styles.signupText}>{"Don't have an account? "}</Text>
-                <TouchableOpacity onPress={() => navigation.navigate('RegisterScreen')}>
-                    <Text style={styles.signupLink}>{"Sign Up"}</Text>
-                </TouchableOpacity>
-            </View>
-            <TouchableOpacity
-                style={styles.guestBtn}
-                onPress={() => navigation.navigate('Explore')}>
-                <Text style={styles.guestBtnText}>{"Explore Shiksha"}</Text>
-            </TouchableOpacity>
-        </View>
+        </SafeAreaView>
     );
 };
 

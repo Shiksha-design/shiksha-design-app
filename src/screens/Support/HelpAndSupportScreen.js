@@ -22,9 +22,9 @@ const HelpAndSupportScreen = (props) => {
     const [agree, setAgree] = useState(true);
 
     return (
-         <SafeAreaView style={{ flex: 1, backgroundColor: COLOR.BACKGROUNDCOLOR }}>
+        <SafeAreaView style={{ flex: 1, backgroundColor: COLOR.BACKGROUNDCOLOR }}>
             <StatusBar backgroundColor={COLOR.DEFALUTCOLOR} barStyle={"dark-content"} />
-            <ScrollView contentContainerStyle={styles.scrollContent} keyboardShouldPersistTaps="handled">
+            <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scrollContent} keyboardShouldPersistTaps="handled">
                 <TouchableOpacity
                     style={styles.backBtn}
                     onPress={() => props.navigation.goBack()}

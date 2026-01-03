@@ -26,7 +26,8 @@ const MyProfileScreen = () => {
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: COLOR.BACKGROUNDCOLOR }}>
             <StatusBar backgroundColor={COLOR.DEFALUTCOLOR} barStyle={"dark-content"} />
-            <ScrollView style={styles.container} contentContainerStyle={{ paddingBottom: 32 }}>
+            <ScrollView showsVerticalScrollIndicator={false}
+                style={styles.container} contentContainerStyle={{ paddingBottom: 32 }}>
                 <TouchableOpacity
                     style={styles.backBtn}
                     onPress={() => navigation.goBack()}

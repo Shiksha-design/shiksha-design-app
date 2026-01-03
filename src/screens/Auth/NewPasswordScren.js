@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TextInput, TouchableOpacity ,Image} from 'react-native';
+import { View, Text, StyleSheet, TextInput, TouchableOpacity, Image, StatusBar } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { useNavigation } from '@react-navigation/native';
 import * as COLOR from '../../styles/colors';
@@ -13,58 +14,61 @@ const NewPasswordScren = () => {
     const navigation = useNavigation();
 
     return (
-        <View style={styles.container}>
-            {/* <View style={styles.iconCircle}>
-                <Ionicons name="lock-closed-outline" size={36} color={COLOR.DEFALUTCOLOR} />
-            </View> */}
-              <Image source={IMAGE.SHIKSHALOGO} style={{ width: 150, height: 60, resizeMode: 'contain' }} />
-            <Text style={styles.title}>{"Set New Password"}</Text>
-            <Text style={styles.subtitle}>{"Enter your new password below. Make sure it's strong and easy to remember."}</Text>
-            <View style={styles.inputWrapper}>
-                <Ionicons name="lock-closed-outline" size={20} color={COLOR.GRAY_DARK} style={styles.inputIcon} />
-                <TextInput
-                    style={styles.input}
-                    placeholder={"New password"}
-                    placeholderTextColor={COLOR.GRAY_DARK}
-                    value={password}
-                    onChangeText={setPassword}
-                    secureTextEntry={!showPassword}
-                />
-                <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
-                    <Ionicons
-                        name={showPassword ? 'eye-off-outline' : 'eye-outline'}
-                        size={20}
-                        color={COLOR.GRAY_DARK}
-                        style={styles.inputIconRight}
+        <SafeAreaView style={{ flex: 1, backgroundColor: COLOR.LIGHTDEFALUTCOLOR }}>
+            <StatusBar backgroundColor={COLOR.LIGHTDEFALUTCOLOR} barStyle={"dark-content"} />
+            <View style={styles.container}>
+                {/* <View style={styles.iconCircle}>
+                    <Ionicons name="lock-closed-outline" size={36} color={COLOR.DEFALUTCOLOR} />
+                </View> */}
+                <Image source={IMAGE.SHIKSHALOGO} style={{ width: 150, height: 60, resizeMode: 'contain' }} />
+                <Text style={styles.title}>{"Set New Password"}</Text>
+                <Text style={styles.subtitle}>{"Enter your new password below. Make sure it's strong and easy to remember."}</Text>
+                <View style={styles.inputWrapper}>
+                    <Ionicons name="lock-closed-outline" size={20} color={COLOR.GRAY_DARK} style={styles.inputIcon} />
+                    <TextInput
+                        style={styles.input}
+                        placeholder={"New password"}
+                        placeholderTextColor={COLOR.GRAY_DARK}
+                        value={password}
+                        onChangeText={setPassword}
+                        secureTextEntry={!showPassword}
                     />
+                    <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
+                        <Ionicons
+                            name={showPassword ? 'eye-off-outline' : 'eye-outline'}
+                            size={20}
+                            color={COLOR.GRAY_DARK}
+                            style={styles.inputIconRight}
+                        />
+                    </TouchableOpacity>
+                </View>
+                <View style={styles.inputWrapper}>
+                    <Ionicons name="lock-closed-outline" size={20} color={COLOR.GRAY_DARK} style={styles.inputIcon} />
+                    <TextInput
+                        style={styles.input}
+                        placeholder={"Confirm password"}
+                        placeholderTextColor={COLOR.GRAY_DARK}
+                        value={confirm}
+                        onChangeText={setConfirm}
+                        secureTextEntry={!showConfirm}
+                    />
+                    <TouchableOpacity onPress={() => setShowConfirm(!showConfirm)}>
+                        <Ionicons
+                            name={showConfirm ? 'eye-off-outline' : 'eye-outline'}
+                            size={20}
+                            color={COLOR.GRAY_DARK}
+                            style={styles.inputIconRight}
+                        />
+                    </TouchableOpacity>
+                </View>
+                <TouchableOpacity
+                    style={styles.saveBtn}
+                    onPress={() => navigation.navigate('LoginScreen')}
+                >
+                    <Text style={styles.saveBtnText}>{"Save Password"}</Text>
                 </TouchableOpacity>
             </View>
-            <View style={styles.inputWrapper}>
-                <Ionicons name="lock-closed-outline" size={20} color={COLOR.GRAY_DARK} style={styles.inputIcon} />
-                <TextInput
-                    style={styles.input}
-                    placeholder={"Confirm password"}
-                    placeholderTextColor={COLOR.GRAY_DARK}
-                    value={confirm}
-                    onChangeText={setConfirm}
-                    secureTextEntry={!showConfirm}
-                />
-                <TouchableOpacity onPress={() => setShowConfirm(!showConfirm)}>
-                    <Ionicons
-                        name={showConfirm ? 'eye-off-outline' : 'eye-outline'}
-                        size={20}
-                        color={COLOR.GRAY_DARK}
-                        style={styles.inputIconRight}
-                    />
-                </TouchableOpacity>
-            </View>
-            <TouchableOpacity
-                style={styles.saveBtn}
-                onPress={() => navigation.navigate('LoginScreen')}
-            >
-                <Text style={styles.saveBtnText}>{"Save Password"}</Text>
-            </TouchableOpacity>
-        </View>
+        </SafeAreaView>
     );
 };
 

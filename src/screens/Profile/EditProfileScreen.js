@@ -15,7 +15,8 @@ const EditProfileScreen = () => {
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: COLOR.BACKGROUNDCOLOR }}>
             <StatusBar backgroundColor={COLOR.DEFALUTCOLOR} barStyle={"dark-content"} />
-            <ScrollView contentContainerStyle={styles.container}>
+            <ScrollView showsVerticalScrollIndicator={false}
+                contentContainerStyle={styles.container}>
                 <TouchableOpacity
                     style={styles.backBtn}
                     onPress={() => navigation.goBack()}

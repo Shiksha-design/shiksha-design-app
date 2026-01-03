@@ -82,7 +82,8 @@ const NotificationScreen = () => {
                         <Text style={styles.markAllBtnText}>{"Mark all read"}</Text>
                     </TouchableOpacity>
                 </View>
-                <ScrollView contentContainerStyle={{ paddingBottom: 32 }}>
+                <ScrollView showsVerticalScrollIndicator={false}
+                    contentContainerStyle={{ paddingBottom: 32 }}>
                     {notifications.map((n, idx) => {
                         const icon = iconMap[n.type] || {
                             name: "notifications-outline",

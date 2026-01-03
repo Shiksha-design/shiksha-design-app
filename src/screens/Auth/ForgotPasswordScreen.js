@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TextInput, TouchableOpacity , Image } from 'react-native';
+import { View, Text, StyleSheet, TextInput, TouchableOpacity, Image, StatusBar } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { useNavigation } from '@react-navigation/native';
 import * as COLOR from '../../styles/colors';
@@ -10,34 +11,37 @@ const ForgotPasswordScreen = () => {
     const navigation = useNavigation();
 
     return (
-        <View style={styles.container}>
-            {/* <View style={styles.iconCircle}>
-                <Ionicons name="mail-open-outline" size={36} color={COLOR.DEFALUTCOLOR} />
-            </View> */}
-              <Image source={IMAGE.SHIKSHALOGO} style={{ width: 150, height: 60, resizeMode: 'contain' , marginBottom: 18 }} />
-            <Text style={styles.title}>{"Forgot Password?"}</Text>
-            <Text style={styles.subtitle}>
-                {"Enter your registered email address and we'll send you a link to reset your password."}
-            </Text>
-            <View style={styles.inputWrapper}>
-                <Ionicons name="mail-outline" size={20} color={COLOR.GRAY_DARK} style={styles.inputIcon} />
-                <TextInput
-                    style={styles.input}
-                    placeholder="Enter your email"
-                    placeholderTextColor={COLOR.GRAY_DARK}
-                    value={email}
-                    onChangeText={setEmail}
-                    keyboardType="email-address"
-                    autoCapitalize="none"
-                />
+        <SafeAreaView style={{ flex: 1, backgroundColor: COLOR.LIGHTDEFALUTCOLOR }}>
+            <StatusBar backgroundColor={COLOR.LIGHTDEFALUTCOLOR} barStyle={"dark-content"} />
+            <View style={styles.container}>
+                {/* <View style={styles.iconCircle}>
+                    <Ionicons name="mail-open-outline" size={36} color={COLOR.DEFALUTCOLOR} />
+                </View> */}
+                <Image source={IMAGE.SHIKSHALOGO} style={{ width: 150, height: 60, resizeMode: 'contain', marginBottom: 18 }} />
+                <Text style={styles.title}>{"Forgot Password?"}</Text>
+                <Text style={styles.subtitle}>
+                    {"Enter your registered email address and we'll send you a link to reset your password."}
+                </Text>
+                <View style={styles.inputWrapper}>
+                    <Ionicons name="mail-outline" size={20} color={COLOR.GRAY_DARK} style={styles.inputIcon} />
+                    <TextInput
+                        style={styles.input}
+                        placeholder="Enter your email"
+                        placeholderTextColor={COLOR.GRAY_DARK}
+                        value={email}
+                        onChangeText={setEmail}
+                        keyboardType="email-address"
+                        autoCapitalize="none"
+                    />
+                </View>
+                <TouchableOpacity
+                    style={styles.sendBtn}
+                    onPress={() => navigation.navigate('NewPasswordScreen')}
+                >
+                    <Text style={styles.sendBtnText}>{"Verify"}</Text>
+                </TouchableOpacity>
             </View>
-            <TouchableOpacity
-                style={styles.sendBtn}
-                onPress={() => navigation.navigate('NewPasswordScreen')}
-            >
-                <Text style={styles.sendBtnText}>{"Verify"}</Text>
-            </TouchableOpacity>
-        </View>
+        </SafeAreaView>
     );
 };
 
