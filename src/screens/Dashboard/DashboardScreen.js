@@ -6,6 +6,7 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import { StatusBar } from 'react-native';
 import Ionicons from "react-native-vector-icons/Ionicons";
 import * as IMAGE from '../../styles/image';
+import ChatBot from '../../components/ChatBot/ChatBot';
 
 const categories = [
     { label: "All" },
@@ -172,6 +173,7 @@ const DashboardScreen = () => {
                     </View>
                 </View>
             </ScrollView>
+            <ChatBot />
         </SafeAreaView>
     );
 };
